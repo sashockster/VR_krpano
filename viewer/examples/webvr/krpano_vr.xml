@@ -3,7 +3,7 @@
 	<include url="contextmenu.xml" />
 
 	<!-- webvr.xml - WebVR plugin, enter/exit VR buttons, VR cursor, VR setup -->
-	<include url="%SWFPATH%/plugins/webvr.xml" />
+	<include url="webvr.xml" />
 
 	<!-- add/overwrite some settings from the webvr.xml for this example
 		- enable the fake mode
