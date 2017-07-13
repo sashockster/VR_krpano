@@ -20,13 +20,16 @@ Enabler.addEventListener(studio.events.StudioEvent.FULLSCREEN_EXPAND_START, func
         mobilescale: 1.0,
         passQueryParameters: true
     });
-    Enabler.finishFullscreenExpand();
+
 });
 // Create a variable to keep track of the expansion state.
 var isFullscreen = false;
 
 Enabler.addEventListener(studio.events.StudioEvent.FULLSCREEN_EXPAND_FINISH, function(event) {
+
     isFullscreen = true;
+    Enabler.finishFullscreenExpand();
+
 });
 
 window.onload = function() {
@@ -47,7 +50,13 @@ function politeInit() {
     Enabler.queryFullscreenSupport();
     Enabler.requestFullscreenExpand();
 
+  /*  var krpano = document.getElementById("krpanoSWFObject");
+    krpano.childNodes[0].childNodes[1].childNodes[1].onclick = function() {
+      Enabler.finishFullscreenExpand();
+    }*/
+
 }
+
 /*
 	krpano Embedding Script
 	krpano 1.19-pr10 (build 2017-05-10)
