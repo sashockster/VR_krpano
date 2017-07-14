@@ -91,7 +91,7 @@
 	        url.flash="videoplayer.swf"
 	        url.html5="videoplayer.js"
 	        videourl.no-ios="video-1920x960.mp4|video-1920x960.webm"
-	        videourl.ios="video-10r24x512.mp4"
+	        videourl.ios="video-1024x512.mp4"
 	        loop="true"
 	        pausedonstart="true"
 	        visible="false"

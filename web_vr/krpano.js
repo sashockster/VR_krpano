@@ -6,7 +6,7 @@
 *
 */
 var fullscreenSupported = false;
-
+var enter_vr_button;
 // Add a listener to report the result.
 Enabler.addEventListener(studio.events.StudioEvent.FULLSCREEN_SUPPORT,
     function(event) {
@@ -19,7 +19,6 @@ Enabler.addEventListener(studio.events.StudioEvent.FULLSCREEN_SUPPORT,
 Enabler.addEventListener(
         studio.events.StudioEvent.FULLSCREEN_EXPAND_START,
         function() {
-          embedpano({swf:"krpano.swf", xml:"krpano.xml", target:"pano", html5:"auto", mobilescale:1.0, passQueryParameters:true});
           Enabler.finishFullscreenExpand();
 });
 // Create a variable to keep track of the expansion state.
@@ -45,8 +44,11 @@ function enablerInitHandler() {
     }
 }
 function politeInit(){
+  embedpano({swf:"krpano.swf", xml:"krpano.xml", target:"pano", html5:"auto", mobilescale:1.0, passQueryParameters:true});
+
   Enabler.queryFullscreenSupport();
   Enabler.requestFullscreenExpand();
+
 
 
 }
