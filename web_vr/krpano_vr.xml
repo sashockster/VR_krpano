@@ -252,8 +252,8 @@
 	<!-- the intro scene 3d hotspots -->
 
 	<!-- krpano VR logo -->
-	<hotspot name="krpanologo" distorted="true" enabled="false"
-	         url="texts.png" crop="0|0|440|90"
+	<hotspot name="logo" distorted="true" enabled="false"
+	         url="texts.png" 
 	         ath="0" atv="0"
 	         depth="2000"
 	         ty="-1000"
