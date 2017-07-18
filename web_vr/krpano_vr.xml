@@ -253,13 +253,12 @@
 	<!-- the intro scene 3d hotspots -->
 
 	<!-- krpano VR logo -->
-	<hotspot name="logo" distorted="true" enabled="false"
-	         url="texts.png"
+	<hotspot name="krpanologo" distorted="true" enabled="false"
+	         url="texts.png" crop="0|0|440|90"
 	         ath="0" atv="0"
 	         depth="2000"
 	         ty="-1000"
 	         />
-
 	<!-- the floor platform -->
 	<hotspot name="floor" zorder="1" distorted="true" enabled="false"
 	         url="black.png" width="250" height="250" alpha="0.5"
@@ -267,7 +266,7 @@
 	         />
 
 	<!-- start button -->
-	<hotspot name="start" distorted="true"
+	<!-- <hotspot name="start" distorted="true"
 	         url="texts.png" crop="80|450|690|100"
 	         ath="0" atv="0"
 	         depth="4000"
@@ -276,7 +275,16 @@
 	         onclick="set(enabled,false); tween(ty|alpha, 8000|0.0, 2.5, easeInQuint, removehotspot(start)); delayedcall(2.0,start_vr());"
 	         alpha="0.0"
 	         onloaded="if(vr_start_done === true, removehotspot(start); start_vr(); , tween(alpha,1); );"
-	         />
+         />  -->
+ <hotspot name="start" distorted="true"
+					url="texts.png" crop="80|450|690|100"
+					ath="0" atv="0"
+					depth="4000"
+					vr_timeout="2000"
+					zorder="99"
+					onloaded="set(enabled,false); tween(ty|alpha, 8000|0.0, 2.5, easeInQuint, removehotspot(start)); delayedcall(0.0,start_vr());"
+					alpha="0.0"
+					/>
 
 
 	<!-- start animation -->
