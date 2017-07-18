@@ -3,7 +3,7 @@
 <html>
 <head>
 	<title>krpano</title>
-	
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
@@ -22,13 +22,16 @@
 <script>
 Enabler.setFloatingPixelDimensions(0, 0);
 </script>
-<script src="krpano.js"></script>
+
+<img  id="loader" style="height: 50%;display: block;margin: 0px auto;position: absolute;left: 37%;top: 24%;" src="loader.gif">
 
 <div id="pano" style="width:100%;height:100%;">
+
 	<noscript><table style="width:100%;height:100%;"><tr style="vertical-align:middle;text-align:center;"><td>ERROR:<br><br>Javascript not activated<br><br></td></tr></table></noscript>
 	<script>
 	</script>
 </div>
 
+<script src="krpano.js"></script>
 </body>
 </html>

@@ -6,6 +6,7 @@
 */
 var fullscreenSupported = false;
 var enter_vr_button;
+var loader = document.getElementById("loader");
 // Add a listener to report the result.
 Enabler.addEventListener(studio.events.StudioEvent.FULLSCREEN_SUPPORT, function(event) {
     fullscreenSupported = event.supported;
@@ -44,7 +45,7 @@ function politeInit() {
         mobilescale: 1.0,
         passQueryParameters: true
     });
-
+    loader.style.display = "none";
     Enabler.queryFullscreenSupport();
     Enabler.requestFullscreenExpand();
 
