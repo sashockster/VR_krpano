@@ -15,6 +15,14 @@
 	        onexitvr="webvr_onexitvr(); tween(layer[webvr_rotate_to_landscape_request].alpha, 0.0, 0.0);"
 	        />
 
+					<plugin name="gyro" devices="html5"
+				        url="gyro2.js"
+				        enabled="false"
+				        onavailable="gyro_available_info();"
+				        onunavailable="gyro_not_available_info();"
+				        />
+
+
 	<!-- re-align the vr button and 'auto-start' the video when pressing the enterVR button -->
 	<layer name="webvr_enterbutton"
 	       align="bottom" y="10%"
@@ -30,7 +38,7 @@
 	       />
 
 	<events name="webvr_events" keep="true" devices="html5"
-	        onresize.mobile="webvr_act_as_gyro_in_portrait_mode();"
+	        onresize.mobile="webvr_act_as_gyro_in_portrait_mode(); switch(plugin[gyro].enabled);"
 	        />
 
 	<action name="webvr_act_as_gyro_in_portrait_mode">
@@ -65,12 +73,13 @@
 
 	<!-- the intro pano image -->
 
-	<view fovtype="VFOV" fov="90" fovmin="40" fovmax="150" />
-	<preview url="preview.jpg" />
-	<image>
-		<cube url="pano_%s.jpg" />
-	</image>
 
+
+<view fovtype="VFOV" fov="90" fovmin="40" fovmax="150" />
+<preview url="preview.jpg" />
+<image>
+	<cube url="pano_%s.jpg" />
+</image>
 
 
 	<!--
