@@ -47,6 +47,7 @@
 			if(aspect != lastaspect OR '%1' == 'true',
 				copy(lastaspect, aspect);
 				if(stagewidth GT stageheight,
+
 					<!-- landscape orientation - use stereo rendering and a direct/fast gyro sensor mode -->
 					set(display.stereo, true);
 					set(webvr.mobilevr_sensor_mode, 3);
@@ -125,7 +126,7 @@
 		  );
 	</action>
 
-	<scene name="video_scene" onstart="plugin[video].play();">
+	<scene name="video_scene" onstart="plugin[video].play(); ">
 		<image>
 			<sphere url="plugin:video" />
 		</image>
