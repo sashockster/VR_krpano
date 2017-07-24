@@ -1,5 +1,5 @@
 ﻿<krpano>
-	
+
 	<contextmenu fullscreen="true" versioninfo="true">
 		<item name="kr" caption="KRPANO"     />
 		<item name="fs" caption="FULLSCREEN" />
@@ -16,6 +16,7 @@
 	<action name="cm_changecontrolmode">
 		switch(control.mouse, moveto, drag);
 		switch(control.touch, moveto, drag);
+		switch(plugin[gyro].enabled);
 	</action>
 
 	<action name="cm_look_straight">
