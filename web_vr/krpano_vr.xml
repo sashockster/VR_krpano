@@ -182,7 +182,7 @@
 			  );
 		</action>
 
-		<events name="vr_menu_events" keep="true" onviewchange="vr_menu_following();"  />
+		<events name="vr_menu_events" keep="true" onviewchange="vr_menu_following(); switch(plugin[gyro].enabled);"  />
 
 		<!-- new krpano 1.19 feature: Javascript actions (can be faster than xml actions, HTML5 only) -->
 		<action name="vr_menu_following" type="Javascript" devices="html5"><![CDATA[
