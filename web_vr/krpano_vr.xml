@@ -15,12 +15,12 @@
 	        onexitvr="webvr_onexitvr(); tween(layer[webvr_rotate_to_landscape_request].alpha, 0.0, 0.0);"
 	        />
 
-					<plugin name="gyro" devices="html5"
-				        url="gyro2.js"
-				        enabled="false"
-				        onavailable="gyro_available_info();"
-				        onunavailable="gyro_not_available_info();"
-				        />
+	<plugin name="gyro" devices="html5"
+	        url="gyro2.js"
+	        enabled="false"
+	        onavailable="gyro_available_info();"
+	        onunavailable="gyro_not_available_info();"
+				 />
 
 
 	<!-- re-align the vr button and 'auto-start' the video when pressing the enterVR button -->
@@ -73,16 +73,27 @@
 
 
 	<!-- the intro pano image -->
-
-
+	<plugin name="video" keep="true"
+	        url.flash="videoplayer.swf"
+	        url.html5="videoplayer.js"
+	        videourl.no-ios="video/skybox.mp4|video/skybox.webm"
+	        videourl.ios="video/skybox.mp4"
+	        loop="true"
+	        pausedonstart="true"
+	        visible="false"
+	        panovideo="true"
+	        />
 
 <view fovtype="VFOV" fov="90" fovmin="40" fovmax="150" />
-<preview url="preview.jpg" />
+<image>
+	<sphere url="plugin:video" />
+</image>
+<!---<preview url="preview.jpg" />
 <image>
 	<cube url="pano_%s.jpg" />
 </image>
 
-
+-->
 	<!--
 		SPECIAL CASE FOR THE VIDEO PANO ON MOBILE DEVICES
 		- on mobile devices its only possible to start a video by as reaction to
@@ -97,7 +108,7 @@
 		- additionally there the new setting 'use_as_videopano' that prepares
 		  the video for a later (=in an other scene) usage as video pano
 	-->
-	<plugin name="video" keep="true"
+	<plugin name="video2" keep="true"
 	        url.flash="videoplayer.swf"
 	        url.html5="videoplayer.js"
 	        videourl.no-ios="video-1920x960.mp4|video-1920x960.webm"
@@ -112,23 +123,23 @@
 
 	<events name="video_events" keep="true"
 	        onmousedown="video_touch_auto_start();"
-	        onremovepano="if(xml.scene != video_scene, plugin[video].seek(0); plugin[video].pause(); );"
+	        onremovepano="if(xml.scene != video_scene, plugin[video2].seek(0); plugin[video2].pause(); );"
 	        />
 
 	<action name="video_touch_auto_start">
 		if(video_touch_auto_start_called !== true,
-			if(plugin[video].ispaused,
-				plugin[video].play();
-				delayedcall(0.1, plugin[video].pause() );
+			if(plugin[video2].ispaused,
+				plugin[video2].play();
+				delayedcall(0.1, plugin[video2].pause() );
 				set(events[video_events].onmousedown, null);
 				set(video_touch_auto_start_called, true);
 			  );
 		  );
 	</action>
 
-	<scene name="video_scene" onstart="plugin[video].play(); ">
+	<scene name="video_scene" onstart="plugin[video2].play(); ">
 		<image>
-			<sphere url="plugin:video" />
+			<sphere url="plugin:video2" />
 		</image>
 	</scene>
 	<!-- SPECIAL CASE END -->
