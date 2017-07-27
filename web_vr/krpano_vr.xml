@@ -37,9 +37,9 @@
 	       enabled="false"
 	       />
 
-	<events name="webvr_events" keep="true" devices="html5"
-	        onresize.mobile="webvr_act_as_gyro_in_portrait_mode(); switch(plugin[gyro].enabled);"
-	        />
+					<events name="webvr_events" keep="true" devices="html5"
+					        onresize.mobile="webvr_act_as_gyro_in_portrait_mode(); switch(plugin[gyro].enabled);"
+					  />
 
 	<action name="webvr_act_as_gyro_in_portrait_mode">
 		if(device.mobile AND webvr.isenabled,
@@ -108,6 +108,7 @@
 		- additionally there the new setting 'use_as_videopano' that prepares
 		  the video for a later (=in an other scene) usage as video pano
 	-->
+
 	<plugin name="video2" keep="true"
 	        url.flash="videoplayer.swf"
 	        url.html5="videoplayer.js"
@@ -154,13 +155,19 @@
 
 		<hotspot name="vr_menu_l"    style="vr_menu_style" keep="true" zorder="6" url="texts.png" crop="302|92|100|100" ox="-48" onover="vr_menu_over(); delayedcall(0,tween(alpha,0.75,0.1));" onout="vr_menu_out();" vr_timeout="700" onclick="nextscene_loop(-1);" />
 		<hotspot name="vr_menu_r"    style="vr_menu_style" keep="true" zorder="6" url="texts.png" crop="392|92|100|100" ox="+48" onover="vr_menu_over(); delayedcall(0,tween(alpha,0.75,0.1));" onout="vr_menu_out();" vr_timeout="700" onclick="nextscene_loop(+1);" />
+		<!--- Go thru each function starting here
+			-->
+			<action name="vr_menu_over">
 
-		<action name="vr_menu_over">
+				</action>
+
+
+	<!--	<action name="vr_menu_over">
 			callwith(hotspot[vr_menu_bg],   tween(alpha|depth,1.0|650); );
 			callwith(hotspot[vr_menu_home], tween(alpha|depth,1.5|650); );
 			callwith(hotspot[vr_menu_l],    tween(alpha|depth,0.5|650); );
 			callwith(hotspot[vr_menu_r],    tween(alpha|depth,0.5|650); );
-		</action>
+		</action>   -->
 
 		<action name="vr_menu_out">
 			if(hotspot[vr_menu].hovering == false,
@@ -196,7 +203,8 @@
 		<events name="vr_menu_events" keep="true" onviewchange="vr_menu_following();"  />
 
 		<!-- new krpano 1.19 feature: Javascript actions (can be faster than xml actions, HTML5 only) -->
-		<action name="vr_menu_following" type="Javascript" devices="html5"><![CDATA[
+		<!--- This makes the home button move around and disappear-->
+		<!-- <action name="vr_menu_following" type="Javascript" devices="html5"><![CDATA[
 
 			var hs1 = krpano.get("hotspot[vr_menu_bg]");
 			var hs2 = krpano.get("hotspot[vr_menu_home]");
@@ -239,7 +247,7 @@
 				hs4.atv = hs3.atv = hs2.atv = hs1.atv = hsv;
 			}
 
-		]]></action>
+		]]></action>  --->
 
 		<!-- a simpler non-VR fallback version for Flash -->
 		<action name="vr_menu_following" devices="flash">
@@ -368,8 +376,9 @@
 			if(hotspot[get(i)].style == 'thumb', set(hotspot[get(i)].enabled, false); );
 			if(hotspot[get(i)].name != 'vr_cursor', tween(hotspot[get(i)].alpha, 0.0, 0.25); );
 		  );
-		delayedcall(0.25, %1; vr_menu_setvisibility(true); );
+		delayedcall(0.25, %1; vr_menu_setvisibility(true);switch(plugin[gyro].enabled); );
 	</action>
+
 
 
 	<action name="nextscene_loop">
