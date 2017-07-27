@@ -18,6 +18,7 @@
 	<plugin name="gyro" devices="html5"
 	        url="gyro2.js"
 	        enabled="false"
+					onenable="set(view.limitview, lookat);"
 	        onavailable="gyro_available_info();"
 	        onunavailable="gyro_not_available_info();"
 				 />
@@ -38,7 +39,7 @@
 	       />
 
 					<events name="webvr_events" keep="true" devices="html5"
-					        onresize.mobile="webvr_act_as_gyro_in_portrait_mode(); switch(plugin[gyro].enabled);"
+					        onresize.mobile="webvr_act_as_gyro_in_portrait_mode(); set(plugin[gyro].enabled,true);"
 					  />
 
 	<action name="webvr_act_as_gyro_in_portrait_mode">
@@ -128,6 +129,7 @@
 	        />
 
 	<action name="video_touch_auto_start">
+
 		if(video_touch_auto_start_called !== true,
 			if(plugin[video2].ispaused,
 				plugin[video2].play();
@@ -138,7 +140,7 @@
 		  );
 	</action>
 
-	<scene name="video_scene" onstart="plugin[video2].play(); ">
+	<scene name="video_scene" onstart="plugin[video2].play(); set(plugin[gyro].enabled,true); ">
 		<image>
 			<sphere url="plugin:video2" />
 		</image>
@@ -204,7 +206,7 @@
 
 		<!-- new krpano 1.19 feature: Javascript actions (can be faster than xml actions, HTML5 only) -->
 		<!--- This makes the home button move around and disappear-->
-		<!-- <action name="vr_menu_following" type="Javascript" devices="html5"><![CDATA[
+<action name="vr_menu_following" type="Javascript" devices="html5"><![CDATA[
 
 			var hs1 = krpano.get("hotspot[vr_menu_bg]");
 			var hs2 = krpano.get("hotspot[vr_menu_home]");
@@ -247,7 +249,7 @@
 				hs4.atv = hs3.atv = hs2.atv = hs1.atv = hsv;
 			}
 
-		]]></action>  --->
+		]]></action>
 
 		<!-- a simpler non-VR fallback version for Flash -->
 		<action name="vr_menu_following" devices="flash">
@@ -376,7 +378,8 @@
 			if(hotspot[get(i)].style == 'thumb', set(hotspot[get(i)].enabled, false); );
 			if(hotspot[get(i)].name != 'vr_cursor', tween(hotspot[get(i)].alpha, 0.0, 0.25); );
 		  );
-		delayedcall(0.25, %1; vr_menu_setvisibility(true);switch(plugin[gyro].enabled); );
+		delayedcall(0.25, %1; vr_menu_setvisibility(true);  plugin[skin_gyro].resetSensor(get(view.hlookat)););
+
 	</action>
 
 
