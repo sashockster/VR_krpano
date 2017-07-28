@@ -15,18 +15,17 @@
 	        onexitvr="webvr_onexitvr(); tween(layer[webvr_rotate_to_landscape_request].alpha, 0.0, 0.0);"
 	        />
 
-	<plugin name="gyro" devices="html5"
-	        url="gyro2.js"
-	        enabled="false"
-					onenable="set(view.limitview, lookat);"
-	        onavailable="gyro_available_info();"
-	        onunavailable="gyro_not_available_info();"
-				 />
+					<plugin name="gyro" devices="html5"
+				        url="gyro2.js"
+				        enabled="false"
+				        onavailable="gyro_available_info();"
+				        onunavailable="gyro_not_available_info();"
+				        />
 
 
 	<!-- re-align the vr button and 'auto-start' the video when pressing the enterVR button -->
 	<layer name="webvr_enterbutton"
-	       align="bottom" y="10%"
+	       align="bottom" y="90%" x = "-45%"
 	       ondown="video_touch_auto_start();"
 	       />
 
@@ -38,9 +37,9 @@
 	       enabled="false"
 	       />
 
-					<events name="webvr_events" keep="true" devices="html5"
-					        onresize.mobile="webvr_act_as_gyro_in_portrait_mode(); set(plugin[gyro].enabled,true);"
-					  />
+	<events name="webvr_events" keep="true" devices="html5"
+	        onresize.mobile="webvr_act_as_gyro_in_portrait_mode(); switch(plugin[gyro].enabled);"
+	        />
 
 	<action name="webvr_act_as_gyro_in_portrait_mode">
 		if(device.mobile AND webvr.isenabled,
@@ -74,26 +73,28 @@
 
 
 	<!-- the intro pano image -->
-	<plugin name="video" keep="true"
+<!--
+	<plugin name="video2" keep="true"
 	        url.flash="videoplayer.swf"
 	        url.html5="videoplayer.js"
-					videourl.no-ios="video-1920x960.mp4|video-1920x960.webm"
-	        videourl.ios="video-1024x512.mp4"
+			videourl.no-ios="video/intro_360.mp4|video/intro_360.webm"
+	        videourl.ios="video/intro_360.mp4"
 	        loop="true"
 	        pausedonstart="true"
 	        visible="false"
 	        panovideo="true"
 	        />
-
+-->
 <view fovtype="VFOV" fov="90" fovmin="40" fovmax="150" />
-<!--<image>
-	<sphere url="plugin:video" />
-</image> -->
 <preview url="preview.jpg" />
 <image>
 	<cube url="pano_%s.jpg" />
 </image>
-
+<!--
+<image>
+	<sphere url="plugin:video2" />
+</image>
+-->
 
 	<!--
 		SPECIAL CASE FOR THE VIDEO PANO ON MOBILE DEVICES
@@ -109,12 +110,11 @@
 		- additionally there the new setting 'use_as_videopano' that prepares
 		  the video for a later (=in an other scene) usage as video pano
 	-->
-
-	<plugin name="video2" keep="true"
+	<plugin name="video" keep="true"
 	        url.flash="videoplayer.swf"
 	        url.html5="videoplayer.js"
-	        videourl.no-ios="video-1920x960.mp4|video-1920x960.webm"
-	        videourl.ios="video-1024x512.mp4"
+	        videourl.no-ios="video/skybox.mp4|video/skybox.webm"
+	        videourl.ios="video/skybox.mp4"
 	        loop="true"
 	        pausedonstart="true"
 	        visible="false"
@@ -125,24 +125,23 @@
 
 	<events name="video_events" keep="true"
 	        onmousedown="video_touch_auto_start();"
-	        onremovepano="if(xml.scene != video_scene, plugin[video2].seek(0); plugin[video2].pause(); );"
+	        onremovepano="if(xml.scene != video_scene, plugin[video].seek(0); plugin[video].pause(); );"
 	        />
 
 	<action name="video_touch_auto_start">
-
 		if(video_touch_auto_start_called !== true,
-			if(plugin[video2].ispaused,
-				plugin[video2].play();
-				delayedcall(0.1, plugin[video2].pause() );
+			if(plugin[video].ispaused,
+				plugin[video].play();
+				delayedcall(0.1, plugin[video].pause() );
 				set(events[video_events].onmousedown, null);
 				set(video_touch_auto_start_called, true);
 			  );
 		  );
 	</action>
 
-	<scene name="video_scene" onstart="plugin[video2].play(); set(plugin[gyro].enabled,true); ">
+	<scene name="video_scene" onstart="plugin[video].play(); ">
 		<image>
-			<sphere url="plugin:video2" />
+			<sphere url="plugin:video" />
 		</image>
 	</scene>
 	<!-- SPECIAL CASE END -->
@@ -157,19 +156,13 @@
 
 		<hotspot name="vr_menu_l"    style="vr_menu_style" keep="true" zorder="6" url="texts.png" crop="302|92|100|100" ox="-48" onover="vr_menu_over(); delayedcall(0,tween(alpha,0.75,0.1));" onout="vr_menu_out();" vr_timeout="700" onclick="nextscene_loop(-1);" />
 		<hotspot name="vr_menu_r"    style="vr_menu_style" keep="true" zorder="6" url="texts.png" crop="392|92|100|100" ox="+48" onover="vr_menu_over(); delayedcall(0,tween(alpha,0.75,0.1));" onout="vr_menu_out();" vr_timeout="700" onclick="nextscene_loop(+1);" />
-		<!--- Go thru each function starting here
-			-->
-			<action name="vr_menu_over">
 
-				</action>
-
-
-	<!--	<action name="vr_menu_over">
+		<action name="vr_menu_over">
 			callwith(hotspot[vr_menu_bg],   tween(alpha|depth,1.0|650); );
 			callwith(hotspot[vr_menu_home], tween(alpha|depth,1.5|650); );
 			callwith(hotspot[vr_menu_l],    tween(alpha|depth,0.5|650); );
 			callwith(hotspot[vr_menu_r],    tween(alpha|depth,0.5|650); );
-		</action>   -->
+		</action>
 
 		<action name="vr_menu_out">
 			if(hotspot[vr_menu].hovering == false,
@@ -205,8 +198,7 @@
 		<events name="vr_menu_events" keep="true" onviewchange="vr_menu_following();"  />
 
 		<!-- new krpano 1.19 feature: Javascript actions (can be faster than xml actions, HTML5 only) -->
-		<!--- This makes the home button move around and disappear-->
-<action name="vr_menu_following" type="Javascript" devices="html5"><![CDATA[
+		<action name="vr_menu_following" type="Javascript" devices="html5"><![CDATA[
 
 			var hs1 = krpano.get("hotspot[vr_menu_bg]");
 			var hs2 = krpano.get("hotspot[vr_menu_home]");
@@ -285,7 +277,6 @@
 
 	<!-- krpano VR logo -->
 	<hotspot name="krpanologo" distorted="true" enabled="false"
-	         url="texts.png" crop="0|0|440|90"
 	         ath="0" atv="0"
 	         depth="2000"
 	         ty="-1000"
@@ -353,18 +344,24 @@
 	<style name="thumb" distorted="true" enabled="false" capture="false" alpha="0" depth="700" ty="75" onover="tween(depth,680);" onout="tween(depth,700);" />
 
 
-	<!-- center panel -->
+	<!-- center panel
 	<hotspot name="p1" style="panel" ath="0" atv="0" />
 		<hotspot name="p1_thumb2" style="thumb" zorder="3" ath="0" atv="0" url="thumb.jpg" scale="0.5" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/panos/kuchlerhaus/tour.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); );" />
 		<hotspot name="p1_txt"    style="thumb" zorder="2" ath="0" atv="0" url="texts.png" crop="4|195|840|88" scale="0.3" oy="+82" enabled="false" />
 
-
-	<!-- left panel -->
+ -->
+ <!-- left panel -->
 	<hotspot name="p2" style="panel" ath="-55" atv="0" />
 		<hotspot name="p2_thumb2" style="thumb" zorder="3" ath="-55" atv="0" url="thumb.jpg" scale="0.5" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/panos/bluebonnet/tour.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); set(webvr.worldscale,0.5); );" />
 		<hotspot name="p2_txt"    style="thumb" zorder="2" ath="-55" atv="0" url="texts.png" crop="4|360|840|88" scale="0.3" oy="82" enabled="false" />
 
+<!-- left panel -->
+ <!--
 
+	<hotspot name="p2" style="panel" ath="-55" atv="0" />
+		<hotspot name="p2_thumb2" style="thumb" zorder="3" ath="-55" atv="0" url="thumb.jpg" scale="0.5" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/vtour/tour.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); set(webvr.worldscale,0.5); );" />
+		<hotspot name="p2_txt"    style="thumb" zorder="2" ath="-55" atv="0" url="texts.png" crop="4|360|840|88" scale="0.3" oy="82" enabled="false" />
+-->
 	<!-- right panel -->
 	<hotspot name="p3" style="panel" ath="+55" atv="0" />
 		<hotspot name="p3_thumb1" style="thumb" zorder="3" ath="+55" atv="0" url="thumb.jpg" scale="0.5" ox="0" oy="-10" onclick="changepano( loadscene(video_scene, null, MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); );" />
@@ -378,10 +375,8 @@
 			if(hotspot[get(i)].style == 'thumb', set(hotspot[get(i)].enabled, false); );
 			if(hotspot[get(i)].name != 'vr_cursor', tween(hotspot[get(i)].alpha, 0.0, 0.25); );
 		  );
-		delayedcall(0.25, %1; vr_menu_setvisibility(true);  plugin[skin_gyro].resetSensor(get(view.hlookat)););
-
+		delayedcall(0.25, %1; vr_menu_setvisibility(true); );
 	</action>
-
 
 
 	<action name="nextscene_loop">
