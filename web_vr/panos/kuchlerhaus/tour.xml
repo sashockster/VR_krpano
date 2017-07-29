@@ -1,7 +1,7 @@
 ﻿<krpano>
 
-	<style name="arrowspot" url="skin/pfeil1.png" distorted="true" vr_timeout="1000" oy="0" scale="2" />
-	
+	<style name="arrowspot" url="skin/Location-Icon.png" distorted="true" vr_timeout="1000" oy="0" scale="2" />
+
 	<action name="goto">
 		mul(newdepth, depth, 2);
 		tween(depth, get(newdepth), 0.25);
@@ -17,9 +17,8 @@
 			<cube url="aussen/pano_%s.jpg" />
 		</image>
 
-		<hotspot name="scene_galerie" style="arrowspot" ath="-66.1" atv="3.3" rotate="70"  depth="10000" onclick="goto(scene_galerie);" />
-		<hotspot name="spot_eingang"  style="arrowspot" ath="1"     atv="10"  rotate="0"   depth="5000"  onclick="goto(scene_verkaufsraum3eingang);" />
-		
+		<hotspot name="spot_eingang"  style="arrowspot" ath="-66"     atv="10"  rotate="0"   depth="5000"  onclick="goto(scene_verkaufsraum3eingang);" />
+
 	</scene>
 
 

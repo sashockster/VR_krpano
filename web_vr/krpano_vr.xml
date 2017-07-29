@@ -25,7 +25,7 @@
 
 	<!-- re-align the vr button and 'auto-start' the video when pressing the enterVR button -->
 	<layer name="webvr_enterbutton"
-	       align="bottom" y="90%" x = "-45%"
+	       align="bottom" y="90%" x = "-40%"
 	       ondown="video_touch_auto_start();"
 	       />
 
@@ -344,12 +344,12 @@
 	<style name="thumb" distorted="true" enabled="false" capture="false" alpha="0" depth="700" ty="75" onover="tween(depth,680);" onout="tween(depth,700);" />
 
 
-	<!-- center panel
+	<!-- center panel -->
 	<hotspot name="p1" style="panel" ath="0" atv="0" />
 		<hotspot name="p1_thumb2" style="thumb" zorder="3" ath="0" atv="0" url="thumb.jpg" scale="0.5" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/panos/kuchlerhaus/tour.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); );" />
 		<hotspot name="p1_txt"    style="thumb" zorder="2" ath="0" atv="0" url="texts.png" crop="4|195|840|88" scale="0.3" oy="+82" enabled="false" />
 
- -->
+
  <!-- left panel -->
 	<hotspot name="p2" style="panel" ath="-55" atv="0" />
 		<hotspot name="p2_thumb2" style="thumb" zorder="3" ath="-55" atv="0" url="thumb.jpg" scale="0.5" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/panos/bluebonnet/tour.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); set(webvr.worldscale,0.5); );" />

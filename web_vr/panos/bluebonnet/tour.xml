@@ -1,13 +1,19 @@
 ﻿<krpano>
+<plugin name="gyro" devices="html5"
+			url="/gyro2.js"
+			enabled="false"
+			onavailable="gyro_available_info();"
+			onunavailable="gyro_not_available_info();"
+			/>
 
 	<scene name="Bluebonnet-3">
 
 		<preview url="Bluebonnet-3-L.tiles/preview.jpg" />
 
 		<image stereo="true" stereolabels="L|R">
-			<cube url="Bluebonnet-3-%t.tiles/pano_%s.jpg" />
+		<cube url="Bluebonnet-3-%t.tiles/pano_%s.jpg" />
 		</image>
 
 	</scene>
-	
+
 </krpano>
