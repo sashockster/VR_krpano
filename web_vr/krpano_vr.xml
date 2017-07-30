@@ -355,8 +355,7 @@
 
  <!-- left panel -->
 	<hotspot name="p2" style="panel" ath="-55" atv="0" />
-		<hotspot name="p2_thumb2" style="thumb" zorder="3" ath="-55" atv="0" url="thumb.jpg" scale="0.5" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/panos/bluebonnet/tour.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); set(webvr.worldscale,0.5); );" />
-		<hotspot name="p2_txt"    style="thumb" zorder="2" ath="-55" atv="0" url="texts.png" crop="4|360|840|88" scale="0.3" oy="82" enabled="false" />
+		<hotspot name="p2_thumb2" style="thumb" zorder="3" ath="-55" atv="0" url="panos/bb/thumb.png" scale="0.5" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/panos/bossbaby/tour.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); set(webvr.worldscale,0.5); );" />
 
 <!-- left panel -->
  <!--
