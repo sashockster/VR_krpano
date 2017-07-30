@@ -340,9 +340,12 @@
 
 
 	<!-- panel/thumb styles -->
-	<style name="panel" distorted="true" enabled="false" zorder="1" url="black.png" width="300" height="200" alpha="0.0" depth="700" ty="75"  />
+<!--	<style name="panel" distorted="true" enabled="false" zorder="1" url="black.png" width="300" height="200" alpha="0.0" depth="700" ty="75"  />
 	<style name="thumb" distorted="true" enabled="false" capture="false" alpha="0" depth="700" ty="75" onover="tween(depth,680);" onout="tween(depth,700);" />
-
+-->
+<!-- Removed the width/height of panel style so the gray box disappeared-->
+<style name="panel" distorted="true" enabled="false" zorder="1" url="black.png" alpha="0.0" depth="700" ty="75"  />
+	<style name="thumb" distorted="true" enabled="false" capture="false" alpha="0" depth="700" ty="75" onover="tween(depth,680);" onout="tween(depth,700);" />
 
 	<!-- center panel -->
 	<hotspot name="p1" style="panel" ath="0" atv="0" />
@@ -364,8 +367,7 @@
 -->
 	<!-- right panel -->
 	<hotspot name="p3" style="panel" ath="+55" atv="0" />
-		<hotspot name="p3_thumb1" style="thumb" zorder="3" ath="+55" atv="0" url="thumb.jpg" scale="0.5" ox="0" oy="-10" onclick="changepano( loadscene(video_scene, null, MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); );" />
-		<hotspot name="p3_txt"    style="thumb" zorder="2" ath="+55" atv="0" url="texts.png" crop="4|277|840|88" scale="0.3" oy="82" enabled="false" />
+		<hotspot name="p3_thumb1" style="thumb" zorder="3" ath="+55" atv="0" url="video/thumb.png" scale="0.5" ox="0" oy="-10" onclick="changepano( loadscene(video_scene, null, MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); );" />
 
 
 
