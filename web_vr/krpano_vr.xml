@@ -352,20 +352,14 @@
 		<hotspot name="p1_thumb2" style="thumb" zorder="3" ath="0" atv="0" url="panos/interactive_pano/thumb.png" scale="0.5" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/panos/interactive_pano/tour.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); );" />
 
 
- <!-- left panel -->
+ <!-- right panel -->
 	<hotspot name="p2" style="panel" ath="-55" atv="0" />
-		<hotspot name="p2_thumb2" style="thumb" zorder="3" ath="-55" atv="0" url="panos/bb/thumb.png" scale="0.5" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/panos/bb/tour.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); set(webvr.worldscale,0.5); );" />
+		<hotspot name="p2_thumb2" style="thumb" zorder="3" ath="+45" atv="0" url="panos/bb/thumb.png" scale="0.5" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/panos/bb/tour.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); set(webvr.worldscale,0.5); );" />
 
-<!-- left panel -->
- <!--
 
-	<hotspot name="p2" style="panel" ath="-55" atv="0" />
-		<hotspot name="p2_thumb2" style="thumb" zorder="3" ath="-55" atv="0" url="thumb.jpg" scale="0.5" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/vtour/tour.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); set(webvr.worldscale,0.5); );" />
-		<hotspot name="p2_txt"    style="thumb" zorder="2" ath="-55" atv="0" url="texts.png" crop="4|360|840|88" scale="0.3" oy="82" enabled="false" />
--->
-	<!-- right panel -->
+		<!-- left panel -->
 	<hotspot name="p3" style="panel" ath="+55" atv="0" />
-		<hotspot name="p3_thumb1" style="thumb" zorder="3" ath="+55" atv="0" url="video/thumb.png" scale="0.5" ox="0" oy="-10" onclick="changepano( loadscene(video_scene, null, MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); );" />
+		<hotspot name="p3_thumb1" style="thumb" zorder="3" ath="-45" atv="0" url="video/thumb.png" scale="0.5" ox="0" oy="-10" onclick="changepano( loadscene(video_scene, null, MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); );" />
 
 
 

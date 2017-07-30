@@ -155,7 +155,6 @@
 
 		tween(layer[webvr_enterbutton].alpha,1);
 		tween(layer[webvr_exitbutton].alpha,0);
-		tween(layer[webvr_setupbutton].alpha,0);
 
 		webvr_show_fakemode_info(false);
 
@@ -235,20 +234,26 @@
 	       onclick="webvr.exitVR();"
 	       />
 
-	<layer name="webvr_setupbutton" keep="true" vr="true"
-	       style="webvr_button_style"
-	       html="VR Setup"
-	       align="bottom" y="24"
-	       autoalpha="true" alpha="0.0"
-	       onclick="vr_setup()"
-	       />
 
 
+<!--
 	<action name="webvr_showbuttons">
 		stopdelayedcall(vr_button_fadeout);
 		if(webvr.ismobilevr,
 			tween(layer[webvr_exitbutton].alpha|layer[webvr_setupbutton].alpha, 1.0|1.0, 0.25);
 			delayedcall(vr_button_fadeout, 3.0, tween(layer[webvr_exitbutton].alpha|layer[webvr_setupbutton].alpha, 0.0|0.0, 1.0); );
+		  ,
+			tween(layer[webvr_exitbutton].alpha, 1.0, 0.25);
+			delayedcall(vr_button_fadeout, 3.0, tween(layer[webvr_exitbutton].alpha, 0.0, 1.0); );
+		  );
+	</action>
+-->
+
+	<action name="webvr_showbuttons">
+		stopdelayedcall(vr_button_fadeout);
+		if(webvr.ismobilevr,
+			tween(layer[webvr_exitbutton].alpha, 1.0|1.0, 0.25);
+			delayedcall(vr_button_fadeout, 3.0, tween(layer[webvr_exitbutton].alpha, 0.0|0.0, 1.0); );
 		  ,
 			tween(layer[webvr_exitbutton].alpha, 1.0, 0.25);
 			delayedcall(vr_button_fadeout, 3.0, tween(layer[webvr_exitbutton].alpha, 0.0, 1.0); );
@@ -267,7 +272,6 @@
 
 		<!-- hide VR buttons -->
 		tween(layer[webvr_exitbutton].alpha,0);
-		tween(layer[webvr_setupbutton].alpha,0);
 
 		<!-- create background layer -->
 		addlayer(vr_setup_bg);
