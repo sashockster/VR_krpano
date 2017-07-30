@@ -219,7 +219,7 @@
 	<layer name="webvr_enterbutton" keep="true" vr="true"
 	       style="webvr_button_style"
 				 url="VR_Icon.png"
-				 scale="0.15" 
+				 scale="0.15"
 	       align="top" y="24"
 	       autoalpha="true" alpha="0.0"
 	       onclick="webvr.enterVR();"
@@ -227,7 +227,9 @@
 
 	<layer name="webvr_exitbutton" keep="true" vr="true"
 	       style="webvr_button_style"
-	       html="Exit VR"
+				 url="VR_Icon.png"
+				 scale="0.15"
+
 	       align="top" y="24"
 	       autoalpha="true" alpha="0.0"
 	       onclick="webvr.exitVR();"
