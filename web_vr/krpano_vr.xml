@@ -349,8 +349,7 @@
 
 	<!-- center panel -->
 	<hotspot name="p1" style="panel" ath="0" atv="0" />
-		<hotspot name="p1_thumb2" style="thumb" zorder="3" ath="0" atv="0" url="thumb.jpg" scale="0.5" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/panos/kuchlerhaus/tour.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); );" />
-		<hotspot name="p1_txt"    style="thumb" zorder="2" ath="0" atv="0" url="texts.png" crop="4|195|840|88" scale="0.3" oy="+82" enabled="false" />
+		<hotspot name="p1_thumb2" style="thumb" zorder="3" ath="0" atv="0" url="panos/interactive_pano/thumb.png" scale="0.5" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/panos/kuchlerhaus/tour.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); );" />
 
 
  <!-- left panel -->
