@@ -187,14 +187,15 @@
 
 		<hotspot name="vr_menu_bg"   style="vr_menu_style" keep="true" zorder="5" url="black.png" width="600" height="120" onover="vr_menu_over();" onout="vr_menu_out();" handcursor="false" />
 		<!-- <hotspot name="vr_menu_home" style="vr_menu_style" keep="true" zorder="6" url="texts.png" crop="0|95|280|100" onover="vr_menu_over(); delayedcall(0,tween(alpha,0.75,0.1));" onout="vr_menu_out();" startupxml="" onloaded="copy(startupxml, xml.url);" vr_timeout="1000" onclick="vr_menu_loadhome();" />   -->
-		<hotspot name="vr_menu_home" style="vr_menu_style" keep="true" zorder="6" url="texts.png" crop="0|95|280|100" onover="vr_menu_over(); " onout="vr_menu_out();" startupxml="" onloaded="copy(startupxml, xml.url);" vr_timeout="500" onclick="vr_menu_loadhome();" />
-
+		<hotspot name="vr_menu_home" style="vr_menu_style" rx="-45"  ty="1800" width="3900" height="3900" alpha="0.0" scale="1" keep="true" zorder="6" url="circle.png"  onover="vr_menu_over(); " onout="vr_menu_out();" startupxml="" onloaded="copy(startupxml, xml.url);" vr_timeout="500" onclick="vr_menu_loadhome();" />
+		<!-- <hotspot name="vr_menu_home" style="vr_menu_style" ath="10" atv="10" rx="100.25" ry="12.75" rz=".07442" width="1000" height="1000" alpha="1" scale="1" keep="true" zorder="6" url="circle.png"  onover="vr_menu_over(); " onout="vr_menu_out();" startupxml="" onloaded="copy(startupxml, xml.url);" vr_timeout="500" onclick="vr_menu_loadhome();" />
+-->
 		<hotspot name="vr_menu_l"    style="vr_menu_style" keep="true" zorder="6" url="texts.png" crop="302|92|100|100" ox="-48" onover="vr_menu_over(); delayedcall(0,tween(alpha,0.75,0.1));" onout="vr_menu_out();" vr_timeout="700" onclick="nextscene_loop(-1);" />
 		<hotspot name="vr_menu_r"    style="vr_menu_style" keep="true" zorder="6" url="texts.png" crop="392|92|100|100" ox="+48" onover="vr_menu_over(); delayedcall(0,tween(alpha,0.75,0.1));" onout="vr_menu_out();" vr_timeout="700" onclick="nextscene_loop(+1);" />
 
 		<action name="vr_menu_over">
 			callwith(hotspot[vr_menu_bg],   tween(alpha|depth,1.0|650); );
-			callwith(hotspot[vr_menu_home], tween(alpha|depth,1.5|650); );
+			callwith(hotspot[vr_menu_home], tween(alpha|depth,0.0|650); );
 			callwith(hotspot[vr_menu_l],    tween(alpha|depth,0.5|650); );
 			callwith(hotspot[vr_menu_r],    tween(alpha|depth,0.5|650); );
 		</action>
@@ -202,7 +203,7 @@
 		<action name="vr_menu_out">
 			if(hotspot[vr_menu].hovering == false,
 				callwith(hotspot[vr_menu_bg],   tween(alpha|depth,0.25|800); );
-				callwith(hotspot[vr_menu_home], tween(alpha|depth,0.25|800); );
+				callwith(hotspot[vr_menu_home], tween(alpha|depth,0.0|800); );
 				callwith(hotspot[vr_menu_l],    tween(alpha|depth,0.25|800); );
 				callwith(hotspot[vr_menu_r],    tween(alpha|depth,0.25|800); );
 			  );
@@ -220,6 +221,8 @@
 		<action name="vr_menu_setvisibility">
 			set(hotspot[vr_menu_bg].visible,   %1);
 			set(hotspot[vr_menu_home].visible, %1);
+			set(hotspot[go_home].visible, %1);
+
 			if(scene.count GT 1,
 				set(hotspot[vr_menu_bg].width, 600);
 				set(hotspot[vr_menu_l].visible, %1);
@@ -237,9 +240,11 @@
 <action name="vr_menu_following" type="Javascript" devices="html5"><![CDATA[
 
 			var hs1 = krpano.get("hotspot[vr_menu_bg]");
+
 			var hs2 = krpano.get("hotspot[vr_menu_home]");
 			var hs3 = krpano.get("hotspot[vr_menu_l]");
 			var hs4 = krpano.get("hotspot[vr_menu_r]");
+
 
 			if(!hs1.hovering && !hs2.hovering && !hs3.hovering && !hs4.hovering)
 			{
@@ -273,14 +278,15 @@
 				hs2.alpha = hs1.alpha = a;
 				if(!hs3.hovering) hs3.alpha = a;
 				if(!hs4.hovering) hs4.alpha = a;
-				hs4.ath = hs3.ath = hs2.ath = hs1.ath = hsh;
-				hs4.atv = hs3.atv = hs2.atv = hs1.atv = hsv;
+				hs4.ath = hs3.ath  = hs1.ath = hsh;
+				hs4.atv = hs3.atv  = hs1.atv = hsv;
 			}
 
 		]]></action>
 		<!--<action name="vr_menu_following">
 			delayedcall(0.5, tween(layer[home_button].alpha,1.0); );
 		</action> -->
+		<!-- Add gyro below-->
 		<!-- a simpler non-VR fallback version for Flash -->
 		<action name="vr_menu_following" devices="flash">
 			copy(h,view.hlookat);
@@ -320,7 +326,7 @@
 	         ty="-1000"
 	         />
 	<!-- the floor platform -->
-	<hotspot name="floor" zorder="1" distorted="true" enabled="false"
+	<hotspot name="floor" zorder="7" distorted="true" enabled="false"
 	         url="black.png" width="250" height="250" alpha="0.5"
 	         depth="0" rx="-90" ty="500"
 	         />
@@ -400,10 +406,6 @@
 <!-- right panel -->
 <hotspot name="p2" style="panel" ath="-55" atv="0" />
 <hotspot name="p2_thumb2" style="thumb" zorder="3" ath="+25" atv="0" url="panos/bb/thumb.png" scale="0.30" ox="0" oy="-10" onclick="changepano( loadscene(video_scene_bb, null, MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); );" />
-
-
-
-
 
 	<!-- pano changing actions -->
 	<action name="changepano">
