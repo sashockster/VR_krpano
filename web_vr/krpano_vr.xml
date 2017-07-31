@@ -174,7 +174,7 @@
 			<sphere url="plugin:video" />
 		</image>
 	</scene>
-	<scene name="video_scene_bb" onstart="plugin[video_bb].play(); ">
+	<scene name="video_scene_bb" onstart="plugin[video_bb].play(); switch(plugin[gyro].enabled);">
 		<image>
 			<sphere url="plugin:video_bb" />
 		</image>
@@ -413,6 +413,7 @@
 		  );
 		delayedcall(0.25, %1; vr_menu_setvisibility(true); );
 		delayedcall(0.5, tween(layer[home_button].alpha,1.0); );
+		switch(plugin[gyro].enabled);
 	</action>
 
 
