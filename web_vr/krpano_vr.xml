@@ -164,7 +164,7 @@
 			<sphere url="plugin:video" />
 		</image>
 	</scene>
-	<scene name="video_scene" onstart="plugin[video_bb].play(); ">
+	<scene name="video_scene_bb" onstart="plugin[video_bb].play(); ">
 		<image>
 			<sphere url="plugin:video_bb" />
 		</image>
@@ -386,7 +386,7 @@
 
 <!-- right panel -->
 <hotspot name="p2" style="panel" ath="-55" atv="0" />
-<hotspot name="p2_thumb2" style="thumb" zorder="3" ath="+25" atv="0" url="panos/bb/thumb.png" scale="0.30" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/panos/bb/tour.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); set(webvr.worldscale,0.5); );" />
+<hotspot name="p2_thumb2" style="thumb" zorder="3" ath="+25" atv="0" url="panos/bb/thumb.png" scale="0.30" ox="0" oy="-10" onclick="changepano( loadscene(video_scene_bb, null, MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); );" />
 
 
 
