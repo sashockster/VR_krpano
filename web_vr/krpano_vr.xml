@@ -183,7 +183,7 @@
 
 
 		<!-- the VR menu - home button, prev/next scene buttons -->
-		<style name="vr_menu_style" depth="800" scale="0.2" distorted="true" ath="0" atv="45" alpha="0.25" visible="false" />
+		<style name="vr_menu_style" depth="800" scale="0.2" distorted="true" ath="0" atv="45" alpha="0.0" visible="false" />
 
 		<hotspot name="vr_menu_bg"   style="vr_menu_style" keep="true" zorder="5" url="black.png" width="600" height="120" onover="vr_menu_over();" onout="vr_menu_out();" handcursor="false" />
 		<!-- <hotspot name="vr_menu_home" style="vr_menu_style" keep="true" zorder="6" url="texts.png" crop="0|95|280|100" onover="vr_menu_over(); delayedcall(0,tween(alpha,0.75,0.1));" onout="vr_menu_out();" startupxml="" onloaded="copy(startupxml, xml.url);" vr_timeout="1000" onclick="vr_menu_loadhome();" />   -->
@@ -275,7 +275,8 @@
 				hsv = hsv*(1-f) + v*f;
 
 				// set everything
-				hs2.alpha = hs1.alpha = a;
+				hs2.alpha = 0.0;
+				hs1.alpha = a;
 				if(!hs3.hovering) hs3.alpha = a;
 				if(!hs4.hovering) hs4.alpha = a;
 				hs4.ath = hs3.ath  = hs1.ath = hsh;
