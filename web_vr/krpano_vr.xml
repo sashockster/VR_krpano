@@ -86,9 +86,19 @@
 	        />
 -->
 <view fovtype="VFOV" fov="90" fovmin="40" fovmax="150" />
-<preview url="preview.jpg" />
+<!--<preview url="preview.jpg" />
 <image>
 	<cube url="pano_%s.jpg" />
+</image>
+<preview url="landing_home_highres.tiles/preview.jpg" />
+-->
+<image type="CUBE" multires="true" tilesize="512">
+	<level tiledimagewidth="1280" tiledimageheight="1280">
+		<cube url="panos/landing_home_highres/landing_home_highres.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+	</level>
+	<level tiledimagewidth="640" tiledimageheight="640">
+		<cube url="panos/landing_home_highres/landing_home_highres.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+	</level>
 </image>
 <!--
 <image>
@@ -344,22 +354,23 @@
 	<style name="thumb" distorted="true" enabled="false" capture="false" alpha="0" depth="700" ty="75" onover="tween(depth,680);" onout="tween(depth,700);" />
 -->
 <!-- Removed the width/height of panel style so the gray box disappeared-->
-<style name="panel" distorted="true" enabled="false" zorder="1" url="black.png" alpha="0.0" depth="700" ty="75"  />
-	<style name="thumb" distorted="true" enabled="false" capture="false" alpha="0" depth="700" ty="75" onover="tween(depth,680);" onout="tween(depth,700);" />
+<!--<style name="panel" distorted="true" enabled="false" zorder="1" url="black.png" alpha="0.0" depth="700" ty="75"  />
 
+	<style name="thumb" distorted="true" enabled="false" capture="false" alpha="0" depth="700" ty="75" onover="tween(depth,680);" onout="tween(depth,700);" />
+-->
 	<!-- center panel -->
 	<hotspot name="p1" style="panel" ath="0" atv="0" />
-		<hotspot name="p1_thumb2" style="thumb" zorder="3" ath="0" atv="0" url="panos/interactive_pano/thumb.png" scale="0.5" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/panos/interactive_pano/tour.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); );" />
+		<hotspot name="p1_thumb2" style="thumb" zorder="3" ath="0" atv="0" url="panos/interactive_pano/thumb.png" scale="0.25" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/panos/interactive_pano/tour.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); );" />
 
 
  <!-- right panel -->
 	<hotspot name="p2" style="panel" ath="-55" atv="0" />
-		<hotspot name="p2_thumb2" style="thumb" zorder="3" ath="+45" atv="0" url="panos/bb/thumb.png" scale="0.5" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/panos/bb/tour.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); set(webvr.worldscale,0.5); );" />
+		<hotspot name="p2_thumb2" style="thumb" zorder="3" ath="+25" atv="0" url="panos/bb/thumb.png" scale="0.30" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/panos/bb/tour.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); set(webvr.worldscale,0.5); );" />
 
 
 		<!-- left panel -->
 	<hotspot name="p3" style="panel" ath="+55" atv="0" />
-		<hotspot name="p3_thumb1" style="thumb" zorder="3" ath="-45" atv="0" url="video/thumb.png" scale="0.5" ox="0" oy="-10" onclick="changepano( loadscene(video_scene, null, MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); );" />
+		<hotspot name="p3_thumb1" style="thumb" zorder="3" ath="-25" atv="0" url="video/thumb.png" scale="0.30" ox="0" oy="-10" onclick="changepano( loadscene(video_scene, null, MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); );" />
 
 
 
