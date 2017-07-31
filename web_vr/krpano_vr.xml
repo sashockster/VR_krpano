@@ -209,6 +209,7 @@
 		</action>
 
 		<action name="vr_menu_loadhome">
+			delayedcall(0.05, tween(layer[home_button].alpha,0.0); );
 
 			set(basedir, '');
 			loadpano(get(startupxml), null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1));
