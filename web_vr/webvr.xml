@@ -112,7 +112,9 @@
 	<action name="webvr_onavailable">
 		webvr.loadsettings();
 		delayedcall(0.5, tween(layer[webvr_enterbutton].alpha,1.0); );
+
 	</action>
+<!--	delayedcall(0.5, tween(layer[home_button].alpha,1.0); ); -->
 
 
 	<action name="webvr_onunknowndevice">
@@ -223,6 +225,14 @@
 	       autoalpha="true" alpha="0.0"
 	       onclick="webvr.enterVR();"
 	       />
+<layer name="home_button" keep="true" vr="true"
+					style="webvr_button_style"
+					url="landing_home.png"
+					scale="0.15"
+					align="bottom" y="24"
+					autoalpha="true" alpha="0.0"
+					onclick="vr_menu_loadhome();"
+					/>
 
 	<layer name="webvr_exitbutton" keep="true" vr="true"
 	       style="webvr_button_style"

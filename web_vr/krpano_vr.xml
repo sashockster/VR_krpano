@@ -28,6 +28,16 @@
 	       align="bottom" y="90%" x = "-40%"
 	       ondown="video_touch_auto_start();"
 	       />
+<layer name="home_button" keep="true" vr="true"
+ 					style="webvr_button_style"
+ 					url="landing_home.png"
+ 					scale="0.15"
+ 					align="bottom" y="24"
+ 					autoalpha="true" alpha="0.0"
+					startupxml=""
+					onloaded="copy(startupxml, xml.url);"
+ 					onclick="vr_menu_loadhome();"
+ 					/>
 
 	<!-- show a 'rotate the device' info when the mobile device is in portrait orientation in VR mode -->
 	<layer name="webvr_rotate_to_landscape_request" keep="true" vr="true" devices="mobile"
@@ -223,7 +233,7 @@
 		<events name="vr_menu_events" keep="true" onviewchange="vr_menu_following();"  />
 
 		<!-- new krpano 1.19 feature: Javascript actions (can be faster than xml actions, HTML5 only) -->
-		<action name="vr_menu_following" type="Javascript" devices="html5"><![CDATA[
+<action name="vr_menu_following" type="Javascript" devices="html5"><![CDATA[
 
 			var hs1 = krpano.get("hotspot[vr_menu_bg]");
 			var hs2 = krpano.get("hotspot[vr_menu_home]");
@@ -267,7 +277,9 @@
 			}
 
 		]]></action>
-
+		<!--<action name="vr_menu_following">
+			delayedcall(0.5, tween(layer[home_button].alpha,1.0); );
+		</action> -->
 		<!-- a simpler non-VR fallback version for Flash -->
 		<action name="vr_menu_following" devices="flash">
 			copy(h,view.hlookat);
@@ -399,6 +411,7 @@
 			if(hotspot[get(i)].name != 'vr_cursor', tween(hotspot[get(i)].alpha, 0.0, 0.25); );
 		  );
 		delayedcall(0.25, %1; vr_menu_setvisibility(true); );
+		delayedcall(0.5, tween(layer[home_button].alpha,1.0); );
 	</action>
 
 
