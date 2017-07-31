@@ -130,6 +130,16 @@
 	        visible="false"
 	        panovideo="true"
 	        />
+<plugin name="video_bb" keep="true"
+					url.flash="videoplayer.swf"
+					url.html5="videoplayer.js"
+					videourl.no-ios="video/boss_baby.mp4|video/boss_baby.webm"
+					videourl.ios="video/boss_baby.mp4"
+					loop="true"
+					pausedonstart="true"
+					visible="false"
+					panovideo="true"
+					/>
 
 
 
@@ -152,6 +162,11 @@
 	<scene name="video_scene" onstart="plugin[video].play(); ">
 		<image>
 			<sphere url="plugin:video" />
+		</image>
+	</scene>
+	<scene name="video_scene" onstart="plugin[video_bb].play(); ">
+		<image>
+			<sphere url="plugin:video_bb" />
 		</image>
 	</scene>
 	<!-- SPECIAL CASE END -->
