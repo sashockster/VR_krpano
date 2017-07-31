@@ -229,7 +229,7 @@
 				 url="VR_Icon.png"
 				 scale="0.15"
 
-	       align="top" y="24"
+	       align="bottom" y="90%" x = "-40%"
 	       autoalpha="true" alpha="0.0"
 	       onclick="webvr.exitVR();"
 	       />
