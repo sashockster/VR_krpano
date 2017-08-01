@@ -5,17 +5,6 @@
 				onavailable="trace('Gyroscope is available')"
 				onunavailable="gyro_not_available_info();"
 			 />
-<contextmenu fullscreen="false" versioninfo="false">
-		<item name="kr" caption="KRPANO"     />
-		<item name="fs" caption="FULLSCREEN" />
-		<item name="cc" caption="Change Controlmode" onclick="cm_changecontrolmode();"  separator="true" devices="mouse" />
-		<item name="nv" caption="Normal View"        onclick="cm_normal_view();"        showif="view.vlookatrange == 180" separator="true"      />
-		<item name="fv" caption="Fisheye View"       onclick="cm_fisheye_view();"       showif="view.vlookatrange == 180" devices="flash|webgl" />
-		<item name="sv" caption="Stereographic View" onclick="cm_stereographic_view();" showif="view.vlookatrange == 180" devices="flash|webgl" />
-		<item name="av" caption="Architectural View" onclick="cm_architectural_view();" showif="view.vlookatrange == 180"                       />
-		<item name="pv" caption="Pannini View"       onclick="cm_pannini_view();"       showif="view.vlookatrange == 180" devices="flash|webgl" />
-		<item name="lp" caption="Little Planet View" onclick="cm_littleplanet_view();"  showif="view.vlookatrange == 180" devices="flash|webgl" />
-	</contextmenu>
 
 
 	<action name="cm_changecontrolmode">
