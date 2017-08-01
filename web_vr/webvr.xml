@@ -136,7 +136,6 @@
 		Enabler.finishFullscreenExpand();
 
 		tween(layer[webvr_enterbutton].alpha,0,0);
-
 		webvr_showbuttons();
 		webvr_hide_all_non_vr_layers();
 
