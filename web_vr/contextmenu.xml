@@ -5,7 +5,7 @@
 				onavailable="trace('Gyroscope is available')"
 				onunavailable="gyro_not_available_info();"
 			 />
-	<contextmenu fullscreen="true" versioninfo="true">
+<contextmenu fullscreen="false" versioninfo="false">
 		<item name="kr" caption="KRPANO"     />
 		<item name="fs" caption="FULLSCREEN" />
 		<item name="cc" caption="Change Controlmode" onclick="cm_changecontrolmode();"  separator="true" devices="mouse" />
@@ -23,12 +23,7 @@
 		switch(control.touch, moveto, drag);
 		switch(plugin[gyro].enabled);
 	</action>
-<!--
-if(view.vlookat LT -80 OR view.vlookat GT +80,
-	tween(view.vlookat, 0.0, 1.0, easeInOutSine);
-	tween(view.fov,     100, distance(150,0.8));
-	);
--->
+
 	<action name="cm_look_straight">
 
 			switch(plugin[gyro].enabled);
@@ -83,5 +78,5 @@ if(view.vlookat LT -80 OR view.vlookat GT +80,
 		add(new_hlookat, view.hlookat, 123.0);
 		tween(view.hlookat, get(new_hlookat), distance(100,0.8));
 	</action>
-
+	
 </krpano>
