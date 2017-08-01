@@ -249,6 +249,7 @@
 
 	<action name="webvr_showbuttons">
 		stopdelayedcall(vr_button_fadeout);
+		set(hotspot[vr_menu_home].visible, %1);
 		if(webvr.ismobilevr,
 			tween(layer[webvr_exitbutton].alpha, 1.0|1.0, 0.25);
 			delayedcall(vr_button_fadeout, 3.0, tween(layer[webvr_exitbutton].alpha, 0.0|0.0, 1.0); );
