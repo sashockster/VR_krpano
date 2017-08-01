@@ -279,8 +279,8 @@
 				hs1.alpha = a;
 				if(!hs3.hovering) hs3.alpha = a;
 				if(!hs4.hovering) hs4.alpha = a;
-				hs4.ath = hs3.ath  = hs1.ath = hsh;
-				hs4.atv = hs3.atv  = hs1.atv = hsv;
+				hs4.ath = hs3.ath = hs2.ath = hs1.ath = hsh;
+				hs4.atv = hs3.atv  = hs2.ath =  hs1.atv = hsv;
 			}
 
 		]]></action>
@@ -288,7 +288,7 @@
 			delayedcall(0.5, tween(layer[home_button].alpha,1.0); );
 		</action> -->
 		<!-- Add gyro below-->
-		<!-- a simpler non-VR fallback version for Flash -->
+		<!-- a simpler non-VR fallback version for Flash  -->
 		<action name="vr_menu_following" devices="flash">
 			copy(h,view.hlookat);
 			copy(v,view.vlookat);
