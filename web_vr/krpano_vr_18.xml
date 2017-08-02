@@ -1,4 +1,4 @@
-<krpano>
+﻿<krpano>
 
 	<include url="contextmenu.xml" />
 
@@ -17,7 +17,7 @@
 
 					<plugin name="gyro" devices="html5"
 				        url="gyro2.js"
-								enabled="false"
+								enabled="true"
 
 								onavailable="trace('Gyroscope is available')"
 				        onunavailable="gyro_not_available_info();"
@@ -165,16 +165,20 @@
 				delayedcall(0.1, plugin[video].pause() );
 				set(events[video_events].onmousedown, null);
 				set(video_touch_auto_start_called, true);
+				set(plugin[gyro].enabled,true);
 			  );
 		  );
+			set(plugin[gyro].enabled,true);
 	</action>
 
-	<scene name="video_scene" onstart="plugin[video].play(); ">
+	<scene name="video_scene" onstart="plugin[video].play(); set(plugin[gyro].enabled, true);">
+
 		<image>
 			<sphere url="plugin:video" />
 		</image>
 	</scene>
-	<scene name="video_scene_bb" onstart="plugin[video_bb].play(); switch(plugin[gyro].enabled);">
+
+	<scene name="video_scene_bb" onstart="plugin[video_bb].play(); set(plugin[gyro].enabled, true);">
 		<image>
 			<sphere url="plugin:video_bb" />
 		</image>
@@ -199,6 +203,7 @@
 			callwith(hotspot[vr_menu_home], tween(alpha|depth,0.0|650); );
 			callwith(hotspot[vr_menu_l],    tween(alpha|depth,0.5|650); );
 			callwith(hotspot[vr_menu_r],    tween(alpha|depth,0.5|650); );
+			set(plugin[gyro].enabled,true);
 		</action>
 
 		<action name="vr_menu_out">
@@ -207,6 +212,7 @@
 				callwith(hotspot[vr_menu_home], tween(alpha|depth,0.0|800); );
 				callwith(hotspot[vr_menu_l],    tween(alpha|depth,0.25|800); );
 				callwith(hotspot[vr_menu_r],    tween(alpha|depth,0.25|800); );
+				set(plugin[gyro].enabled,true);
 			  );
 		</action>
 
@@ -216,13 +222,14 @@
 			loadpano(get(startupxml), null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1));
 			set(webvr.worldscale,1.0);
 			vr_menu_setvisibility(false);
+			set(plugin[gyro].enabled,true);
 		</action>
 
 		<action name="vr_menu_setvisibility">
 			set(hotspot[vr_menu_bg].visible,   %1);
 			set(hotspot[vr_menu_home].visible, %1);
 			set(hotspot[go_home].visible, %1);
-
+set(plugin[gyro].enabled,true);
 			if(scene.count GT 1,
 				set(hotspot[vr_menu_bg].width, 600);
 				set(hotspot[vr_menu_l].visible, %1);
@@ -232,6 +239,7 @@
 				set(hotspot[vr_menu_l].visible, false);
 				set(hotspot[vr_menu_r].visible, false);
 			  );
+				set(plugin[gyro].enabled,true);
 		</action>
 
 		<events name="vr_menu_events" keep="true" onviewchange="vr_menu_following();"  />
@@ -283,7 +291,7 @@
 				hs4.atv = hs3.atv  = hs2.ath =  hs1.atv = hsv;
 			}
 
-		]]></action>
+		]]>switch(plugin[gyro].enabled);</action>
 		<!--<action name="vr_menu_following">
 			delayedcall(0.5, tween(layer[home_button].alpha,1.0); );
 		</action> -->
@@ -314,7 +322,7 @@
 			copy(hs,hotspot[vr_menu_r]);
 			copy(hs.ath,h);
 			copy(hs.atv,v);
-			copy(hs.alpha,a);
+			copy(hs.alpha,a);(plugin[gyro].enabled,true);
 		</action>
 
 
@@ -349,7 +357,7 @@
 					depth="4000"
 					vr_timeout="2000"
 					zorder="99"
-					onloaded="set(enabled,false); tween(ty|alpha, 8000|0.0, 2.5, easeInQuint, removehotspot(start)); delayedcall(0.0,start_vr());"
+					onloaded="set(enabled,false); tween(ty|alpha, 8000|0.0, 2.5, easeInQuint, removehotspot(start)); delayedcall(0.0,start_vr());set(plugin[gyro].enabled,true);"
 					alpha="0.0"
 					/>
 
@@ -412,7 +420,7 @@
 <!-- 5th panel -->
 
 <hotspot name="p2" style="panel" ath="-55" atv="0" />
-<hotspot name="p2_thumb2" style="thumb" zorder="3" ath="+25" atv="0" url="panos/bb/thumb.png" scale="0.30" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/video/videopano.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); );" />
+<hotspot name="p2_thumb2" style="thumb" zorder="3" ath="+45" atv="0" url="panos/bb/thumb.png" scale="0.30" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/video/videopano.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); );" />
 
 	<!-- pano changing actions -->
 	<action name="changepano">
@@ -433,6 +441,7 @@
 			if(newsceneindex LT 0, copy(newsceneindex,lastsceneindex));
 			if(newsceneindex GT lastsceneindex, set(newsceneindex,0));
 			loadscene(get(scene[get(newsceneindex)].name), null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1));
+			switch(plugin[gyro].enabled);
 		  );
 	</action>
 
