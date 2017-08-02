@@ -17,7 +17,7 @@
 
 					<plugin name="gyro" devices="html5"
 				        url="gyro2.js"
-								enabled="false"
+								enabled="true"
 
 								onavailable="trace('Gyroscope is available')"
 				        onunavailable="gyro_not_available_info();"
@@ -131,6 +131,7 @@
 		- additionally there the new setting 'use_as_videopano' that prepares
 		  the video for a later (=in an other scene) usage as video pano
 	-->
+
 	<plugin name="video" keep="true"
 	        url.flash="videoplayer.swf"
 	        url.html5="videoplayer.js"
@@ -164,16 +165,20 @@
 				delayedcall(0.1, plugin[video].pause() );
 				set(events[video_events].onmousedown, null);
 				set(video_touch_auto_start_called, true);
+				set(plugin[gyro].enabled,true);
 			  );
 		  );
+			set(plugin[gyro].enabled,true);
 	</action>
 
-	<scene name="video_scene" onstart="plugin[video].play(); ">
+	<scene name="video_scene" onstart="plugin[video].play(); set(plugin[gyro].enabled, true);">
+
 		<image>
 			<sphere url="plugin:video" />
 		</image>
 	</scene>
-	<scene name="video_scene_bb" onstart="plugin[video_bb].play(); switch(plugin[gyro].enabled);">
+
+	<scene name="video_scene_bb" onstart="plugin[video_bb].play(); set(plugin[gyro].enabled, true);">
 		<image>
 			<sphere url="plugin:video_bb" />
 		</image>
@@ -185,7 +190,7 @@
 		<style name="vr_menu_style" depth="800" scale="0.2" distorted="true" ath="0" atv="45" alpha="0.0" visible="false" />
 
 		<hotspot name="vr_menu_bg"   style="vr_menu_style" keep="true" zorder="5" url="" width="600" height="120" onover="vr_menu_over();" onout="vr_menu_out();" handcursor="false" />
-		 <hotspot name="vr_menu_home" style="vr_menu_style" keep="true" zorder="6" url="texts.png" crop="0|95|280|100" onover="vr_menu_over(); delayedcall(0,tween(alpha,0.75,0.1));" onout="vr_menu_out();" startupxml="" onloaded="copy(startupxml, xml.url);" vr_timeout="1000" onclick="vr_menu_loadhome();" />   
+		 <hotspot name="vr_menu_home" style="vr_menu_style" keep="true" zorder="6" url="texts.png" crop="0|95|280|100" onover="vr_menu_over(); delayedcall(0,tween(alpha,0.75,0.1));" onout="vr_menu_out();" startupxml="" onloaded="copy(startupxml, xml.url);" vr_timeout="1000" onclick="vr_menu_loadhome();" />
 		<!-- <hotspot name="vr_menu_home" style="vr_menu_style" rx="-45"  ty="1800" width="3900" height="3900" alpha="0.0" scale="1" keep="true" zorder="6" url="circle.png"  onover="vr_menu_over(); " onout="vr_menu_out();" startupxml="" onloaded="copy(startupxml, xml.url);" vr_timeout="500" onclick="vr_menu_loadhome();" />
 		-->
 		<!-- <hotspot name="vr_menu_home" style="vr_menu_style" ath="10" atv="10" rx="100.25" ry="12.75" rz=".07442" width="1000" height="1000" alpha="1" scale="1" keep="true" zorder="6" url="circle.png"  onover="vr_menu_over(); " onout="vr_menu_out();" startupxml="" onloaded="copy(startupxml, xml.url);" vr_timeout="500" onclick="vr_menu_loadhome();" />
@@ -198,6 +203,7 @@
 			callwith(hotspot[vr_menu_home], tween(alpha|depth,0.0|650); );
 			callwith(hotspot[vr_menu_l],    tween(alpha|depth,0.5|650); );
 			callwith(hotspot[vr_menu_r],    tween(alpha|depth,0.5|650); );
+			set(plugin[gyro].enabled,true);
 		</action>
 
 		<action name="vr_menu_out">
@@ -206,6 +212,7 @@
 				callwith(hotspot[vr_menu_home], tween(alpha|depth,0.0|800); );
 				callwith(hotspot[vr_menu_l],    tween(alpha|depth,0.25|800); );
 				callwith(hotspot[vr_menu_r],    tween(alpha|depth,0.25|800); );
+				set(plugin[gyro].enabled,true);
 			  );
 		</action>
 
@@ -215,13 +222,14 @@
 			loadpano(get(startupxml), null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1));
 			set(webvr.worldscale,1.0);
 			vr_menu_setvisibility(false);
+			set(plugin[gyro].enabled,true);
 		</action>
 
 		<action name="vr_menu_setvisibility">
 			set(hotspot[vr_menu_bg].visible,   %1);
 			set(hotspot[vr_menu_home].visible, %1);
 			set(hotspot[go_home].visible, %1);
-
+set(plugin[gyro].enabled,true);
 			if(scene.count GT 1,
 				set(hotspot[vr_menu_bg].width, 600);
 				set(hotspot[vr_menu_l].visible, %1);
@@ -231,6 +239,7 @@
 				set(hotspot[vr_menu_l].visible, false);
 				set(hotspot[vr_menu_r].visible, false);
 			  );
+				set(plugin[gyro].enabled,true);
 		</action>
 
 		<events name="vr_menu_events" keep="true" onviewchange="vr_menu_following();"  />
@@ -282,7 +291,7 @@
 				hs4.atv = hs3.atv  = hs2.ath =  hs1.atv = hsv;
 			}
 
-		]]></action>
+		]]>switch(plugin[gyro].enabled);</action>
 		<!--<action name="vr_menu_following">
 			delayedcall(0.5, tween(layer[home_button].alpha,1.0); );
 		</action> -->
@@ -313,7 +322,7 @@
 			copy(hs,hotspot[vr_menu_r]);
 			copy(hs.ath,h);
 			copy(hs.atv,v);
-			copy(hs.alpha,a);
+			copy(hs.alpha,a);(plugin[gyro].enabled,true);
 		</action>
 
 
@@ -348,7 +357,7 @@
 					depth="4000"
 					vr_timeout="2000"
 					zorder="99"
-					onloaded="set(enabled,false); tween(ty|alpha, 8000|0.0, 2.5, easeInQuint, removehotspot(start)); delayedcall(0.0,start_vr());"
+					onloaded="set(enabled,false); tween(ty|alpha, 8000|0.0, 2.5, easeInQuint, removehotspot(start)); delayedcall(0.0,start_vr());set(plugin[gyro].enabled,true);"
 					alpha="0.0"
 					/>
 
@@ -432,6 +441,7 @@
 			if(newsceneindex LT 0, copy(newsceneindex,lastsceneindex));
 			if(newsceneindex GT lastsceneindex, set(newsceneindex,0));
 			loadscene(get(scene[get(newsceneindex)].name), null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1));
+			switch(plugin[gyro].enabled);
 		  );
 	</action>
 
