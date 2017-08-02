@@ -1,0 +1,14 @@
+krpano Testing Server.app/
+.DS_Store
+viewer/examples/webvr/video/
+web_vr/video/
+web_vr/video.zip
+krpano.html
+krpano_vr_2.xml
+revolve_logo_final.png
+web_vr/krpano.html
+skybox.mp4
+skybox.webm
+panos
+krpano_2.js
+krpano.js.zip

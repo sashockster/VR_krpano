@@ -14,6 +14,7 @@
 	        onentervr="webvr_onentervr(); webvr_act_as_gyro_in_portrait_mode(true);"
 	        onexitvr="webvr_onexitvr(); tween(layer[webvr_rotate_to_landscape_request].alpha, 0.0, 0.0);"
 	        />
+
 					<plugin name="gyro" devices="html5"
 				        url="gyro2.js"
 								enabled="false"
@@ -184,7 +185,7 @@
 		<style name="vr_menu_style" depth="800" scale="0.2" distorted="true" ath="0" atv="45" alpha="0.0" visible="false" />
 
 		<hotspot name="vr_menu_bg"   style="vr_menu_style" keep="true" zorder="5" url="" width="600" height="120" onover="vr_menu_over();" onout="vr_menu_out();" handcursor="false" />
-		 <hotspot name="vr_menu_home" style="vr_menu_style" keep="true" zorder="6" url="texts.png" crop="0|95|280|100" onover="vr_menu_over(); delayedcall(0,tween(alpha,0.75,0.1));" onout="vr_menu_out();" startupxml="" onloaded="copy(startupxml, xml.url);" vr_timeout="1000" onclick="vr_menu_loadhome();" />
+		 <hotspot name="vr_menu_home" style="vr_menu_style" keep="true" zorder="6" url="texts.png" crop="0|95|280|100" onover="vr_menu_over(); delayedcall(0,tween(alpha,0.75,0.1));" onout="vr_menu_out();" startupxml="" onloaded="copy(startupxml, xml.url);" vr_timeout="1000" onclick="vr_menu_loadhome();" />   
 		<!-- <hotspot name="vr_menu_home" style="vr_menu_style" rx="-45"  ty="1800" width="3900" height="3900" alpha="0.0" scale="1" keep="true" zorder="6" url="circle.png"  onover="vr_menu_over(); " onout="vr_menu_out();" startupxml="" onloaded="copy(startupxml, xml.url);" vr_timeout="500" onclick="vr_menu_loadhome();" />
 		-->
 		<!-- <hotspot name="vr_menu_home" style="vr_menu_style" ath="10" atv="10" rx="100.25" ry="12.75" rz=".07442" width="1000" height="1000" alpha="1" scale="1" keep="true" zorder="6" url="circle.png"  onover="vr_menu_over(); " onout="vr_menu_out();" startupxml="" onloaded="copy(startupxml, xml.url);" vr_timeout="500" onclick="vr_menu_loadhome();" />
@@ -399,15 +400,9 @@
 <hotspot name="p3_thumb1" style="thumb" zorder="3" ath="-25" atv="0" url="video/thumb.png" scale="0.30" ox="0" oy="-10" onclick="changepano( loadscene(video_scene, null, MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); );" />
 
 <!-- center panel -->
-
 <hotspot name="p1" style="panel" ath="0" atv="0" />
 <hotspot name="p1_thumb2" style="thumb" zorder="3" ath="0" atv="0" url="panos/interactive_pano/thumb.png" scale="0.25" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/panos/interactive_pano/tour.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); );" />
 
-<!-- center panel -->
-<!--
-<hotspot name="p1" style="panel" ath="0" atv="0" />
-<hotspot name="p1_thumb2" style="thumb" zorder="3" ath="0" atv="0" url="panos/interactive_pano/thumb.png" scale="0.25" ox="0" oy="-10" onclick="changepano( loadpanoscene('%CURRENTXML%/panos/interactive_pano/tour.xml', 0, null, NOPREVIEW|MERGE|KEEPVIEW|KEEPMOVING, BLEND(1)); );" />
--->
 <!-- right panel -->
 <!--
 <hotspot name="p2" style="panel" ath="-55" atv="0" />
