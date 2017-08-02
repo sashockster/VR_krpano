@@ -1,8 +1,23 @@
-﻿<krpano>
+<krpano>
 
 	<!-- grid preview pano -->
-<preview type="grid(cube,64,64,512,0xCCCCCC,0xF6F6F6,0x999999);" /> 
+<preview type="grid(cube,64,64,512,0xCCCCCC,0xF6F6F6,0x999999);" />
 
 	<!-- view/fov settings -->
+  <plugin name="skin_gyro" keep="true" url="%SWFPATH%/gyro2.js" devices="html5.and.touch" enabled="true" onavailable="skin_have_gyro_support();" onenable="skin_gyro_enabled();" ondisable="skin_gyro_disabled();" />
+
 <view hlookat="0" vlookat="0" fovtype="VFOV" fov="90" fovmin="30" fovmax="150" />
+<layer name="skin_gyro_container" style="settingsitem" x="0" y="8" alpha="0.5" enabled="false" onclick="switch(plugin[skin_gyro].enabled);">
+  <layer name="skin_gyro_txt" style="skintext" align="left" x="10" html="Gyro Control" />
+  <layer name="skin_gyro_not" style="skintext" align="right" x="10" html="Not available" visible="true" />
+  <layer name="skin_gyro_ctrl" type="container" align="right" x="10" width="24" height="12" bgborder="1 0xFFFFFF 1" bgroundedge="8" visible="false" alpha="0.5">
+    <layer name="skin_gyro_ctrl_i" type="container" align="left" x="-1" width="14" height="14" bgcolor="0xFFFFFF" bgalpha="1" bgroundedge="8" />
+  </layer>
+</layer>
+<action name="skin_have_gyro_support">
+  set(layer[skin_gyro_container].enabled, true);
+  set(layer[skin_gyro_container].alpha, 1.0);
+  set(layer[skin_gyro_not].visible, false);
+  set(layer[skin_gyro_ctrl].visible, true);
+</action>
 </krpano>
